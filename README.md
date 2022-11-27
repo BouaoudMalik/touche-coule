@@ -1,73 +1,55 @@
-# Touché Coulé
+## Projet BlockChain - Touché Coulé [DAAR]
 
-Welcome to the DAAR project. The idea will be to implement a "Touché Coulé" (Battleship) game
-in a decentralized way, on Ethereum. This will have cool side effects, like not
-be forced to pay for servers.
-The project can't be run on Windows. Please, use WSL.
+### Membre 
 
-# Installation
+---
 
-```bash
-# With HTTPS
-git clone https://github.com/ghivert/touche-coule.git
-# Or with SSH
-git clone git@github.com:ghivert/touche-coule.git
-```
+BOUAOUD Malik - 21105730 - M2 STL ING
 
-You’ll need to install dependencies. You’ll need [`HardHat`](https://hardhat.org/), [`Node.js`](https://nodejs.org/en/), [`NPM`](https://www.npmjs.com/) and [`Yarn`](https://yarnpkg.com/). You’ll need to install [`Metamask`](https://metamask.io/) as well to communicate with your blockchain.
+KAYA Delphine - 3800099 - M2 STL ING
 
-- `HardHat` is a local blockchain development, to iterate quickly and avoiding wasting Ether during development. Fortunately, you have nothing to do to install it.
-- `Node.js` is used to build the frontend and running `truffle`, which is a utility to deploy contracts.
-- `NPM` or `Yarn` is a package manager, to install dependencies for your frontend development. Yarn is recommended.
-- `Metamask` is a in-browser utility to interact with decentralized applications.
+---
 
-# Some setup
+### Développement
 
-Once everything is installed, launch the project (with `yarn dev`). You should have a local blockchain running in local. Open Metamask, setup it, and add an account from the Private Keys HardHat displays.
-Now you can connect Metamask to the blockchain. To do this, add a network by clicking on `Ethereum Mainnet` and `personalized RPC`. Here, you should be able to add a network.
+Pour ce projet, nous devions coder une application simulant le jeu touché coulé en utilisant la blockChain Etherum. 
 
-![Ganache Config](public/ganache-config.png)
+Nous avons codé un contrat contracts/MyShip.sol héritant de  contracts/Ship.sol. 
 
-Once you have done it, you’re connected to the HardHat blockchain!
+#### Contract MyShip. 
+Le contrat a deux paramètres entiers, qui représente la position des bateaux que nous récupérons lors de leurs placement sur la grille grâce à la fonction **place**, la fonction place les bateaux de manière aléatoire en respectant le fait que les position choisirent soit à l'intérieur du **board game**. 
 
-# Installation
 
-Install the dependencies.
+Ensuite nous avons codé la fonction update qui permet de changer les coordonnées du bateau. 
 
-```bash
-# Yarn users
-yarn
-```
+Et enfin, la fonction **Fire**, elle permet de tirer sur un bateau, on a deux possibilités de tirer. La première consiste à tirer dans les coordonnées inverse du bateau courrant, si il est à (34,20) alors le tir arrivera à la position (20,34). 
 
-Run the complete project.
+La seconde possibilité ressemble un peu à **place** puisqu'on tire aléatoirement en respectant les dimensions de la grille de jeu. 
 
-```bash
-# Yarn users
-yarn dev
-```
 
-You’re good to go!
+#### Déploiement 
 
-# Subject
+Une fois le contrat codé, il a fallu le déployer en s'inspirant du déploiement du contrat main. Le contrat se déploie sur une adresse. 
 
-Implement a Touché Coulé from scratch in Solidity. The game is running into a contract by its own. Your job is to create an agent (i.e. a smart contract, i.e. an AI) to play the game. The interface of the agent is given in the sources.
+#### Enregistrement du contrat MyShip dans Main
 
-The idea of the game is to fight in a free for all style (every players will play in the same time) with ships. Each player have two ships, of size 1. At the beginning of the game, you're placing your ships on a grid (50x50). Every turn, your ships will be able to fire once. Your goal is to destroy all the opponents ships. In a second step, your ships will be able to talk to each other, and potentially to do some diplomacy with other ships.
+Pour réaliser cette étape, nous avons modifier **Frontend/app.tsx** dans la partie onClick, on appelle Register du main en lui passant en paramètre l'adresse du contrat que l'on récupère dans **Lib/Main.ts** du dossier Frontend. 
 
-# Smart Contract
 
-- Create your ship by inheriting the base contract.
-- The contract should override all the functions in the `Ship.sol` contract.
-- `place` is the first function called by the contract after registering the ship. It should returns the place of the ship.
-- `update` is called after the ship is placed on the board. For some implementation reasons, the place can, in some times, not be given. You can use that information, or not.
-- Finally, `fire` is run at each turn, and should try to touch a ship by returning a position (x, y).
-- Deploy the contract with a proper deployment. 
-- Register the ship on the Main contract. 
-- Do all the same steps with a second ship and a second player. 
-- Test your implementation with the turn function. 
+#### Gameplay
 
-Pro tip: you can automate the ship deployment and registering with the deployments. 
+---
 
-# Bonus
+**!! Attention !!**  Pour avoir plus de deux bateaux il faut plus de deux comptes métamask sinon la fonction register ne fonctionnera pas après le placement du second bateau. 
 
-You can add some features to the project as a bonus if you want to dive more into the project. For example, you could implement custom ships (with different ships), you can allow them to move, or to discuss with each other. Feel free to add whatever you feel useful. Every new features will be taken into account.
+---
+
+Du coup chaque compte a droit à deux bateaux. Une fois les bateaux placés on peut commencer à jouer en appuyant sur turn. 
+
+Le fait d'utiliser notre méthode de tire implique que la cible n'est atteinte que rarement puisqu'on a de l'aléa.
+
+Nous n'avons pas trouvé de moyen pour que le contrat MyShip ait accès au information du contract main pour récupérer par exemple les position des bateaux au alentours pour pouvoir leur tirer dessus. 
+
+
+![Capture d’écran 2022-11-27 à 11.06.42](assets/Capture%20d%E2%80%99e%CC%81cran%202022-11-27%20a%CC%80%2011.06.42.png)
+
