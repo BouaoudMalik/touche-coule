@@ -46,7 +46,7 @@ contract Main {
     (uint x, uint y) = placeShip(index);
     Ship(ships[index]).update(x, y);
     emit Registered(index, msg.sender, x, y);
-    used[ship] = true;
+    //used[ship] = true;
     index += 1;
   }
 

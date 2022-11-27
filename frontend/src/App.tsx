@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import styles from './styles.module.css'
 import * as ethereum from '@/lib/ethereum'
 import * as main from '@/lib/main'
+import { myShip } from '@/lib/main'
 import { BigNumber } from 'ethers'
 
 type Canceler = () => void
@@ -133,7 +134,11 @@ const Buttons = ({ wallet }: { wallet: ReturnType<typeof useWallet> }) => {
   const next = () => wallet?.contract.turn()
   return (
     <div style={{ display: 'flex', gap: 5, padding: 5 }}>
-      <button onClick={() => {}}>Register</button>
+      <button onClick={
+        async () =>{
+        var adr= myShip()
+        await wallet?.contract.register(adr!)}
+      }>Register</button>
       <button onClick={next}>Turn</button>
     </div>
   )
