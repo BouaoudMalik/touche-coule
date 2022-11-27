@@ -51,5 +51,8 @@ Le fait d'utiliser notre méthode de tire implique que la cible n'est atteinte q
 Nous n'avons pas trouvé de moyen pour que le contrat MyShip ait accès au information du contract main pour récupérer par exemple les position des bateaux au alentours pour pouvoir leur tirer dessus. 
 
 
-![Capture d’écran 2022-11-27 à 11.06.42](assets/Capture%20d%E2%80%99e%CC%81cran%202022-11-27%20a%CC%80%2011.06.42.png)
+<div align="center">
+    <img src="public/cs.png" alt="Logo" width="400" height="400">
+  </div> 
+
 
