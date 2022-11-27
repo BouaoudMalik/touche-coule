@@ -17,7 +17,7 @@ Pour ce projet, nous devions coder une application simulant le jeu touché coul�
 Nous avons codé un contrat contracts/MyShip.sol héritant de  contracts/Ship.sol. 
 
 #### Contract MyShip. 
-Le contrat a deux paramètres entiers, qui représente la position des bateaux que nous récupérons lors de leurs placement sur la grille grâce à la fonction **place**, la fonction place les bateaux de manière aléatoire en respectant le fait que les position choisirent soit à l'intérieur du **board game**. 
+Le contrat a deux paramètres entiers, qui représente la position des bateaux que nous récupérons lors de leurs placement sur la grille grâce à la fonction **place**, la fonction place les bateaux de manière aléatoire en respectant le fait que les position choisissent soit à l'intérieur du **board game**. 
 
 
 Ensuite nous avons codé la fonction update qui permet de changer les coordonnées du bateau. 
@@ -44,7 +44,7 @@ Pour réaliser cette étape, nous avons modifier **Frontend/app.tsx** dans la pa
 
 ---
 
-Du coup chaque compte a droit à deux bateaux. Une fois les bateaux placés on peut commencer à jouer en appuyant sur turn. 
+Du coup chaque un compte a droit à deux bateaux. Une fois les bateaux placés on peut commencer à jouer en appuyant sur turn. 
 
 Le fait d'utiliser notre méthode de tire implique que la cible n'est atteinte que rarement puisqu'on a de l'aléa.
 
